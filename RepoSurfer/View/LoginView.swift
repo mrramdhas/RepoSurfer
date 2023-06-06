@@ -10,7 +10,6 @@ import SwiftUI
 struct LoginView: View {
     
     @ObservedObject private var vm = LoginViewModel()
-    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         VStack {

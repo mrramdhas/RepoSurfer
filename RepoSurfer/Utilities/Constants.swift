@@ -28,9 +28,10 @@ struct SFSymbols {
     static let person       = "person.crop.circle"
     static let star         = "star"
     static let starFill     = "star.fill"
-    static let hammerFill   = "hammer.fill"
+    static let pencilFill   = "pencil.circle.fill"
     static let fork         = "tuningfork"
     static let share        = "square.and.arrow.up"
     static let lock         = "lock"
+    static let unlock       = "lock.open"
 }
 

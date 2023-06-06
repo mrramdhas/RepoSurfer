@@ -60,7 +60,7 @@ final class LoginViewModel: NSObject, ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.connectedScenes
                 .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-                .first { $0.isKeyWindow }?.rootViewController = UIHostingController(rootView: HomeView())
+                .first { $0.isKeyWindow }?.rootViewController = UIHostingController(rootView: RepositoryListView())
         }
     }
     
