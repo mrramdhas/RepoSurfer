@@ -9,7 +9,7 @@ import XCTest
 import KeychainSwift
 @testable import RepoSurfer
 
-final class RepositoryListTestCase: XCTestCase {
+final class RepositoryListTests: XCTestCase {
     
     var viewModel: RepositoryListViewModel!
     var repoService: RepoServiceDelegate!
