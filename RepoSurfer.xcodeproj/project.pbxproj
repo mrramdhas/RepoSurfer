@@ -149,6 +149,7 @@
 				5466D7492A2DDA9300F4EFB8 /* Service */,
 				5466D71B2A2DD88900F4EFB8 /* RepoSurferApp.swift */,
 				5466D71F2A2DD88A00F4EFB8 /* Assets.xcassets */,
+				54C3AB2F2A32333300629076 /* Readme.rtf */,
 				5466D7452A2DD8BC00F4EFB8 /* Info.plist */,
 				5466D7212A2DD88A00F4EFB8 /* Preview Content */,
 			);
@@ -186,7 +187,6 @@
 			children = (
 				5466D7472A2DD9E100F4EFB8 /* LoginViewModel.swift */,
 				5466D76C2A2E317100F4EFB8 /* RepositoryListViewModel.swift */,
-				54C3AB2F2A32333300629076 /* Readme.rtf */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
