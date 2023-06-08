@@ -16,12 +16,8 @@ struct Repository: Codable {
     let repoPrivate: Bool?
     let description: String?
     let language: String?
-    let forksCount, stargazersCount, watchersCount, size: Int?
-    let defaultBranch: String?
-    let openIssuesCount: Int?
-    let visibility: String?
-    let pushedAt, createdAt, updatedAt: String?
-    let forks, openIssues, watchers: Int?
+    let forksCount, stargazersCount, size: Int?
+    let pushedAt, createdAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -32,17 +28,9 @@ struct Repository: Codable {
         case language
         case forksCount = "forks_count"
         case stargazersCount = "stargazers_count"
-        case watchersCount = "watchers_count"
         case size
-        case defaultBranch = "default_branch"
-        case openIssuesCount = "open_issues_count"
-        case visibility
         case pushedAt = "pushed_at"
         case createdAt = "created_at"
-        case updatedAt = "updated_at"
-        case forks
-        case openIssues = "open_issues"
-        case watchers
     }
 }
 

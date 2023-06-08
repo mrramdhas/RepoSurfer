@@ -42,6 +42,6 @@ struct RepositoryDetailView: View {
 
 struct RepositoryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoryDetailView(repo: Repository(id: 2345, name: "realtor-react", owner: Owner(login: "mrramdhas", id: 47564242, avatarURL: "https://avatars.githubusercontent.com/u/47564242?v=4"), repoPrivate: true, description: "Building realtor clone using React.js & Tailwind CSS", language: "swift", forksCount: 23, stargazersCount: 4, watchersCount: 3, size: 179, defaultBranch: "main", openIssuesCount: 0, visibility: "public", pushedAt: "2023-05-14T21:01:43Z", createdAt: "2023-05-14T21:01:43Z", updatedAt: "2023-05-14T21:01:43Z", forks: 0, openIssues: 0, watchers: 0))
+        RepositoryDetailView(repo: Repository(id: 2345, name: "realtor-react", owner: Owner(login: "mrramdhas", id: 47564242, avatarURL: "https://avatars.githubusercontent.com/u/47564242?v=4"), repoPrivate: true, description: "Building realtor clone using React.js & Tailwind CSS", language: "swift", forksCount: 23, stargazersCount: 4, size: 179, pushedAt: "2023-05-14T21:01:43Z", createdAt: "2023-05-14T21:01:43Z"))
     }
 }

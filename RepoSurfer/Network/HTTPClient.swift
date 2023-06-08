@@ -29,36 +29,24 @@ extension HTTPClient {
         request.allHTTPHeaderFields = endpoint.header
         request.httpMethod = httpMethod.rawValue
         
-        do {
-            let (data, response) = try await URLSession(configuration: config).data(for: request, delegate: nil)
-            guard let response = response as? HTTPURLResponse else {
-                throw RequestError.noResponse
+        let (data, response) = try await URLSession(configuration: config).data(for: request, delegate: nil)
+        guard let response = response as? HTTPURLResponse else {
+            throw RequestError.noResponse
+        }
+        switch response.statusCode {
+        case 200...299:
+            do {
+                let decodedResponse = try JSONDecoder().decode(responseModel, from: data)
+                return decodedResponse
+            } catch {
+                throw RequestError.decode
             }
-            
-            switch response.statusCode {
-            case 200...299:
-                do {
-                    let decodedResponse = try JSONDecoder().decode(responseModel, from: data)
-                    return decodedResponse
-                } catch {
-                    #if DEBUG
-                    print("💥 Execute error:")
-                    print(error)
-                    #endif
-                    throw RequestError.decode
-                }
-            case 400, 401:
-                throw RequestError.unauthorized(data)
-            case 404:
-                throw RequestError.notFound
-            default:
-                throw RequestError.unexpectedStatusCode(response.statusCode)
-            }
-        } catch {
-            #if DEBUG
-            print(error)
-            #endif
-            throw RequestError.unknown("Network error")
+        case 401:
+            throw RequestError.unauthorized
+        case 404:
+            throw RequestError.notFound
+        default:
+            throw RequestError.unexpectedStatusCode(response.statusCode)
         }
     }
 }

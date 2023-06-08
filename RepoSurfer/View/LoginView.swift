@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject private var vm = LoginViewModel()
+    @ObservedObject private var vm = LoginViewModel(loginService: LoginService())
     
     var body: some View {
         VStack {
@@ -23,7 +23,6 @@ struct LoginView: View {
             }
             .buttonStyle(.bordered)
             .buttonBorderShape(.capsule)
-
         }
         .padding()
     }

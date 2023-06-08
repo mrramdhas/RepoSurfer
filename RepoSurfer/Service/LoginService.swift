@@ -12,6 +12,7 @@ protocol LoginServiceDelegate {
 }
 
 struct LoginService: HTTPClient, LoginServiceDelegate {
+    
     func getAccessToken(id: String, secret: String, code: String, uri: String, httpMethod: HTTPMethod) async throws -> Token {
         let response = try await sendRequest(endpoint: LoginEndPoint.token(id: id, secret: secret, code: code, uri: uri), httpMethod: httpMethod, responseModel: Token.self)
         

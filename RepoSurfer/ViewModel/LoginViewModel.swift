@@ -7,13 +7,17 @@
 
 import SwiftUI
 import Foundation
+import KeychainSwift
 import AuthenticationServices
 
-final class LoginViewModel: NSObject, ObservableObject {
+class LoginViewModel: NSObject, ObservableObject {
     
-    private var loginService = LoginService()
+    var loginService: LoginServiceDelegate
     
-    /// Present login auth view through web then navigate user to the Home View
+    init(loginService: LoginServiceDelegate) {
+        self.loginService = loginService
+    }
+    
     func login() {
         let endpoint = LoginEndPoint.login(id: Client.id, uri: Client.uri)
         guard let url = URL(string: endpoint.baseURL + endpoint.path) else {return}
@@ -34,18 +38,15 @@ final class LoginViewModel: NSObject, ObservableObject {
                 return
             }
             
-            // Step 2: Getting access token
             Task {
                 do {
                     let result = try await self.loginService.getAccessToken(id: Client.id, secret: Client.secret, code: code, uri: Client.uri, httpMethod: .post)
-                    
-                    Keychain.shared.save(result.accessToken, forKey: Keys.accessToken)
-                    
+                    KeychainSwift().set(result.accessToken, forKey: Keys.accessToken)
                     self.changeRootView()
                 } catch {
-                    #if DEBUG
+#if DEBUG
                     print(error.localizedDescription)
-                    #endif
+#endif
                 }
             }
         }
@@ -53,7 +54,6 @@ final class LoginViewModel: NSObject, ObservableObject {
         session.presentationContextProvider = self
         session.prefersEphemeralWebBrowserSession = true
         session.start()
-        
     }
     
     private func changeRootView() {
@@ -63,7 +63,6 @@ final class LoginViewModel: NSObject, ObservableObject {
                 .first { $0.isKeyWindow }?.rootViewController = UIHostingController(rootView: RepositoryListView())
         }
     }
-    
 }
 
 

@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  RepositoryListView.swift
 //  RepoSurfer
 //
 //  Created by Ramdhas on 2023-06-05.
@@ -9,14 +9,14 @@ import SwiftUI
 
 struct RepositoryListView: View {
     
-    @ObservedObject private var vm = HomeViewModel()
+    @ObservedObject private var vm = RepositoryListViewModel(repoService: RepoService())
     
     var body: some View {
         NavigationView {
             ZStack {
                 if vm.isLoading {
                     VStack(spacing: 10) {
-                        Text("Loading")
+                        Text(LOADING)
                     }
                     .padding(.bottom, 90)
                 } else {
@@ -24,7 +24,7 @@ struct RepositoryListView: View {
                         List {
                             ForEach(vm.filteredItems, id: \.id) { item in
                                 NavigationLink(destination: RepositoryDetailView(repo: item)) {
-                                    HomeItemView(repository: item)
+                                    RepoItemView(repository: item)
                                 }
                             }
                         }
@@ -32,7 +32,7 @@ struct RepositoryListView: View {
                     } else {
                         HStack {
                             Spacer()
-                            Text("No Data Found")
+                            Text(NO_DATA_FOUND)
                             Spacer()
                         }
                     }
@@ -46,7 +46,7 @@ struct RepositoryListView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct RepositoryListView_Previews: PreviewProvider {
     static var previews: some View {
         RepositoryListView()
     }

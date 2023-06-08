@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KeychainSwift
 
 @main
 struct RepoSurferApp: App {
@@ -13,7 +14,7 @@ struct RepoSurferApp: App {
     private var token: String?
     
     init() {
-        self.token = Keychain.shared.load(withKey: Keys.accessToken)
+        self.token = KeychainSwift().load(withKey: Keys.accessToken)
     }
     
     var body: some Scene {

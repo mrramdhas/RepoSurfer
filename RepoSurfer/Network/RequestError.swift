@@ -12,7 +12,7 @@ public enum RequestError: Error {
     case invalidURL
     case noResponse
     case notFound
-    case unauthorized(Data)
+    case unauthorized
     case unexpectedStatusCode(Int)
     case unknown(String)
 }
